@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <input id="inputBox" type="text" />
+<button id="submitButton">Submit</button>
+<p id="output"></p>
+<p id="log"></p>
+
+<script>
+  const buttonElement = document.getElementById("submitButton");
+
+function copyInput() {
+  console.log(event);
+  const inputElement = document.getElementById("inputBox");
+  const outputElement = document.getElementById("output");
+  outputElement.innerHTML = inputElement.value;
+}
+buttonElement.addEventListener("click", copyInput);
+</script>
+
+<script>
+  const log = document.querySelector("#log");
+
+document.addEventListener("keydown", logKey);
+
+function logKey(e) {
+  // how do we know which key was pressed?
+  console.log(e);
+  // checkout e.code, e.key, and e.keyCode
+  // what is the difference? code is the name (with "Key" or like "LeftShift"), key is what it says on the screen when you type it, keyCode is a number code value
+  //it seems capital letters can be detected down, but not up? (on hint page activity)
+}
+</script>
+</body>
+</html>
