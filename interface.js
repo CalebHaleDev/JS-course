@@ -6,10 +6,7 @@ const surface = canvas.getContext('2d');  //referred to as "context"
 let canvasWidth = 1200, canvasHeight = 600;
 let canvasMid = () => {return{x:canvasWidth/2, y:canvasHeight/2};}
 let view = {x:0, y:0, scale:1, left:0, right:canvasWidth, top:0, bottom:canvasHeight};
-let allNodes = [];
-let loadedNodes = [];
-let currentNode;
-let connectingNode = [];
+let allNodes = [], loadedNodes = [], currentNode, connectingNode = [];
 const textOutput = document.querySelector("#output");
 let displaySettings = {"default":"black"};
 //let interfaceData = {surface:surface, connectingNode:connectingNode, displaySettings:displaySettings, view:view};
@@ -97,22 +94,6 @@ function print(text){
   textOutput.innerHTML = text;
 }
 
-//----------------------------------------------------------
-  function drawLines(fromNode){
-    fromNode.connections.forEach((cnt) => {
-      if(cnt.direction=="from"){
-        let origin = fromNode.rightTab();
-        let destination = cnt.partner.leftTab();
-      }else{
-        let origin = fromNode.leftTab();
-        let destination = cnt.partner.rightTab();
-      }
-      fromNode.line(origin, destination, fromNode.displaySettings[cnt.type]);
-      console.log(fromNode.displaySettings[cnt.type]);
-      //line() //can this access 
-    });
-  }
-
 function selectById(nodeId){
   //search allNodes for one with the Id, return a reference to it
 }
@@ -151,7 +132,6 @@ function drawDisplay(){
   //loadedNodes.forEach((node)=>drawLines(node));
   //forEach of the loadedNodes, drawRect and line
 }
-
 
 
 let mouseOverNode = function(x, y, node){
@@ -240,15 +220,6 @@ let keyPress=function(press){
         }
       }
   });
-
-    // if(!connectingNode.includes(currentNode)) connectingNode.push(currentNode);   //change to be hover-based
-    // drawDisplay(); //just to update the highlights for a moment
-    // if(connectingNode.length>1){
-    //   connectingNode[0].connectTo(connectingNode[1]);
-    //   connectingNode.pop();
-    //   connectingNode.pop();
-    //   drawDisplay();
-    // }
   }else if(["w","a","s","d"].includes(press.key)){
     let stepSize = 3;
     let movementKey = {"w":[0,1], "a":[-1,0], "s":[0,-1], "d":[1,0]};
@@ -268,8 +239,3 @@ let mouseWheel=function(event){
   //wheelDeltaY/10
 }
 document.addEventListener("wheel",mouseWheel);
-/**
- * 
- * Click on node to select it (subnode if nested)
- * Buttons to toggle type, move, or update info (text box?)
- */

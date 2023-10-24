@@ -2,3 +2,12 @@
   background: #EEE;
   border-radius: 10px;
 }
+#canvas_container{
+  margin: auto;
+  padding: auto;
+  display: block;
+  max-width:85%;
+}
+#main_label{
+  text-align: center;
+}
