@@ -1,8 +1,7 @@
 'use strict';
-//finish then submit 2-3 min video https://byui.instructure.com/courses/250604/assignments/11825803 and do weekly quiz
 const canvas = document.querySelector("#canvas");
 canvas.style.border = '5px solid gray';
-const surface = canvas.getContext('2d');  //referred to as "context"
+const surface = canvas.getContext('2d');  //referred to as "context" normally
 let canvasWidth = 1200, canvasHeight = 600;
 let canvasMid = () => {return{x:canvasWidth/2, y:canvasHeight/2};}
 let view = {x:0, y:0, scale:1, left:0, right:canvasWidth, top:0, bottom:canvasHeight};
@@ -13,7 +12,6 @@ let displaySettings = {"default":"black"};
 drawDisplay();
 
 class Node {
-  //id, type, title, text, subnodes, connections (connected node, direction:to/from-in/out, connection type),  position (location, left and right)
   //use # before private properties
   constructor(width, height, color, border, surface, connectingNode, displaySettings, view){
     //connections blank
@@ -87,15 +85,11 @@ class Node {
     this.surface.stroke();
     this.surface.strokeStyle = style;
   }
-  //strokeRect does rectangle outline, with strokeStyle and lineWidth as properties
+  //strokeRect does rectangle outline too, with strokeStyle and lineWidth as properties
 }
 
 function print(text){
   textOutput.innerHTML = text;
-}
-
-function selectById(nodeId){
-  //search allNodes for one with the Id, return a reference to it
 }
 
 function clearCanvas(){
@@ -132,7 +126,6 @@ function drawDisplay(){
   //loadedNodes.forEach((node)=>drawLines(node));
   //forEach of the loadedNodes, drawRect and line
 }
-
 
 let mouseOverNode = function(x, y, node){
   let nodeLeft = node.x, nodeRight = node.x + node.width; //  let nodeLeft = node.left, nodeRight = node.right;?
@@ -226,7 +219,7 @@ let keyPress=function(press){
     view.x += stepSize*movementKey[press.key][0];
     view.y -= stepSize*movementKey[press.key][1];
     drawDisplay();
-    print(`${view.x},${view.y}`);
+    //print(`${view.x},${view.y}`);
     //console.log(view);
   }
 }
